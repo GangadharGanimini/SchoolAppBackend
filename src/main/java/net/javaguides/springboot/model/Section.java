@@ -12,18 +12,13 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection="student")
-public class Student {
-	@Id
-	
-	private long _id;
-	private String standardId;
-	private String sectionId;
-	private String name;
-	private int standard;
-	private int marks;
+@Document(collection="section")
 
+public class Section {
 	
-	
-	
+	@Id
+	private String _id;
+	private String sections;
+	private String standardId;
+
 }
