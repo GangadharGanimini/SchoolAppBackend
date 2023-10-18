@@ -60,7 +60,7 @@ public class FeesController {
 				.orElseThrow(() -> new ResourceNotFoundException("Fees not exist with id :" + id));
 		
 		fees.setName(feesDetails.getName());
-		fees.setClassNumber(feesDetails.getClassNumber());
+		fees.setStandard(feesDetails.getStandard());
         fees.setFees(feesDetails.getFees());
 	
         Fees updatedFees = feesRepository.save(fees);

@@ -59,7 +59,7 @@ public class StudentController {
 				.orElseThrow(() -> new ResourceNotFoundException("student not exist with id :" + id));
 		
 		student.setName(studentDetails.getName());
-		student.setClassNumber(studentDetails.getClassNumber());
+		student.setStandard(studentDetails.getStandard());
 		student.setMarks(studentDetails.getMarks());
 		
 		Student updatedStudent = studentRepository.save(student);
