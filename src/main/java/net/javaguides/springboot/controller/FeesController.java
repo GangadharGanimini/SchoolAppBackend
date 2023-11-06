@@ -18,12 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import net.javaguides.springboot.exception.ResourceNotFoundException;
 import net.javaguides.springboot.model.Fees;
+
+import net.javaguides.springboot.model.Standard;
+
 import net.javaguides.springboot.repository.FeesRepository;
+import net.javaguides.springboot.service.FeesService;
+import net.javaguides.springboot.service.StandardService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
 public class FeesController {
+	
+	@Autowired
+	private FeesService feesService;
 
 	@Autowired
 	private FeesRepository feesRepository;
@@ -31,7 +39,8 @@ public class FeesController {
 	// get all employees
 	@GetMapping("/Fees")
 	public List<Fees> getAllFees(){
-		return feesRepository.findAll();
+		List<Fees> feesList = feesService.getFeeList();
+		return feesList;
 	}		
 	
 	// create employee rest api
