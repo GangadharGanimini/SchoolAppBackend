@@ -17,12 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.javaguides.springboot.exception.ResourceNotFoundException;
-import net.javaguides.springboot.model.Employee;
 import net.javaguides.springboot.model.Fees;
-import net.javaguides.springboot.model.Student;
-import net.javaguides.springboot.repository.EmployeeRepository;
 import net.javaguides.springboot.repository.FeesRepository;
-import net.javaguides.springboot.repository.StudentRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
