@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,45 +45,11 @@ public class FeesController {
 		return feesList;
 	}		
 	
-	// create employee rest api
-	@PostMapping("/Fees")
-	public Fees createFees(@RequestBody Fees fees) {
-		return feesRepository.save(fees);
-	}
-	
-	// get employee by id rest api
-	@GetMapping("/Fees/{id}")
-	public ResponseEntity<Fees> getFeesById(@PathVariable Long id) {
-		Fees fees = feesRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Fees not exist with id :" + id));
-		return ResponseEntity.ok(fees);
-	}
-	
-	// update employee rest api
-	
-	@PutMapping("/Fees/{id}")
-	public ResponseEntity<Fees> updateFees(@PathVariable Long id, @RequestBody Fees feesDetails){
-		Fees fees = feesRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Fees not exist with id :" + id));
+	@GetMapping(value="/feesById")
+	public Fees getFeesByID(String id)
+	{
 		
-		fees.setName(feesDetails.getName());
-		fees.setStandard(feesDetails.getStandard());
-        fees.setFees(feesDetails.getFees());
-	
-        Fees updatedFees = feesRepository.save(fees);
-		return ResponseEntity.ok(updatedFees);
+		Fees FeesbyID = feesService.getFeesByID(id);
+		return FeesbyID;
 	}
-	
-	// delete employee rest api
-	@DeleteMapping("/Fees/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
-		Fees fees = feesRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Fees not exist with id :" + id));
-		
-		feesRepository.delete(fees);
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
-		return ResponseEntity.ok(response);
-	}
-
 }
