@@ -22,4 +22,15 @@ public class StandardController {
 		return standardList;
 	}
 	
+	
+	@GetMapping(value="/standardById")
+	public Standard getStandardByID(String id,String name)
+	{
+		
+		Standard studentbyID = standardService.getStandardByID(id,name);
+		return studentbyID;
+		
+	}
+	
+	
 }
