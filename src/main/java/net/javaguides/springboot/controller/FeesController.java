@@ -35,8 +35,8 @@ public class FeesController {
 	@Autowired
 	private FeesService feesService;
 
-	@Autowired
-	private FeesRepository feesRepository;
+//	@Autowired
+//	private FeesRepository feesRepository;
 	
 	// get all employees
 	@GetMapping("/Fees")
