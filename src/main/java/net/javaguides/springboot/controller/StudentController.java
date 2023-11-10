@@ -21,6 +21,7 @@ import net.javaguides.springboot.exception.ResourceNotFoundException;
 import net.javaguides.springboot.model.Teacher;
 import net.javaguides.springboot.model.Student;
 import net.javaguides.springboot.repository.TeacherRepository;
+import net.javaguides.springboot.service.StudentService;
 import net.javaguides.springboot.repository.StudentRepository;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -28,55 +29,29 @@ import net.javaguides.springboot.repository.StudentRepository;
 @RequestMapping("/api/v1/")
 public class StudentController {
 
+//	@Autowired
+//	private StudentRepository studentRepository;
+	
 	@Autowired
-	private StudentRepository studentRepository;
+	private StudentService studentService;
+	
+	@PostMapping(value ="/addStudent" )
+	public Student addStudent(@RequestBody Student student) {
+		Student addStudent = studentService.addStudent(student); 
+		return addStudent;
+		
+	}
+	
+	
 	
 	// get all employees
-	@GetMapping("/Student")
-	public List<Student> getAllStudent(){
-		return studentRepository.findAll();
-	}		
+//	@GetMapping("/Student")
+//	public List<Student> getAllStudent(){
+//		return studentRepository.findAll();
+//	}		
+//	
 	
-	// create employee rest api
-	@PostMapping("/Student")
-	public Student createStudent(@RequestBody Student student) {
-		return studentRepository.save(student);
-	}
 	
-	// get employee by id rest api
-	@GetMapping("/Student/{id}")
-	public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
-		Student student = studentRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
-		return ResponseEntity.ok(student);
-	}
-	
-	// update employee rest api
-	
-	@PutMapping("/Student/{id}")
-	public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student studentDetails){
-		Student student = studentRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("student not exist with id :" + id));
-		
-		student.setName(studentDetails.getName());
-		student.setStandard(studentDetails.getStandard());
-		student.setMarks(studentDetails.getMarks());
-		
-		Student updatedStudent = studentRepository.save(student);
-		return ResponseEntity.ok(updatedStudent);
-	}
-	
-	// delete employee rest api
-	@DeleteMapping("/Student/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteStudent(@PathVariable Long id){
-		Student student = studentRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
-		
-		studentRepository.delete(student);
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
-		return ResponseEntity.ok(response);
-	}
 
 
 }

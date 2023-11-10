@@ -28,8 +28,8 @@ import net.javaguides.springboot.service.TeacherService;
 @RequestMapping("/api/v1/")
 public class TeacherController {
 
-	@Autowired
-	private TeacherRepository teacherRepository;
+//	@Autowired
+//	private TeacherRepository teacherRepository;
 	
 	@Autowired
 	private TeacherService teacherService;
@@ -43,45 +43,45 @@ public class TeacherController {
 		}		
 	
 	// create employee rest api
-	@PostMapping("/teacher")
-	public Teacher createEmployee(@RequestBody Teacher employee) {
-		return teacherRepository.save(employee);
-	}
+//	@PostMapping("/teacher")
+//	public Teacher createEmployee(@RequestBody Teacher employee) {
+//		return teacherRepository.save(employee);
+//	}
 	
 	// get employee by id rest api
-	@GetMapping("/teacher/{id}")
-	public ResponseEntity<Teacher> getEmployeeById(@PathVariable Long id) {
-		Teacher employee = teacherRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
-		return ResponseEntity.ok(employee);
-	}
+//	@GetMapping("/teacher/{id}")
+//	public ResponseEntity<Teacher> getEmployeeById(@PathVariable Long id) {
+//		Teacher employee = teacherRepository.findById(id)
+//				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
+//		return ResponseEntity.ok(employee);
+//	}
 	
 	// update employee rest api
 	
-	@PutMapping("/teacher/{id}")
-	public ResponseEntity<Teacher> updateEmployee(@PathVariable Long id, @RequestBody Teacher employeeDetails){
-		Teacher employee = teacherRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
-		
-		employee.setFirstName(employeeDetails.getFirstName());
-		employee.setLastName(employeeDetails.getLastName());
-		employee.setEmailId(employeeDetails.getEmailId());
-		
-		Teacher updatedEmployee = teacherRepository.save(employee);
-		return ResponseEntity.ok(updatedEmployee);
-	}
+//	@PutMapping("/teacher/{id}")
+//	public ResponseEntity<Teacher> updateEmployee(@PathVariable Long id, @RequestBody Teacher employeeDetails){
+//		Teacher employee = teacherRepository.findById(id)
+//				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
+//		
+//		employee.setFirstName(employeeDetails.getFirstName());
+//		employee.setLastName(employeeDetails.getLastName());
+//		employee.setEmailId(employeeDetails.getEmailId());
+//		
+//		Teacher updatedEmployee = teacherRepository.save(employee);
+//		return ResponseEntity.ok(updatedEmployee);
+//	}
 	
 	// delete employee rest api
-	@DeleteMapping("/teacher/{id}")
-	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
-		Teacher employee = teacherRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
-		
-		teacherRepository.delete(employee);
-		Map<String, Boolean> response = new HashMap<>();
-		response.put("deleted", Boolean.TRUE);
-		return ResponseEntity.ok(response);
-	}
+//	@DeleteMapping("/teacher/{id}")
+//	public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
+//		Teacher employee = teacherRepository.findById(id)
+//				.orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id :" + id));
+//		
+//		teacherRepository.delete(employee);
+//		Map<String, Boolean> response = new HashMap<>();
+//		response.put("deleted", Boolean.TRUE);
+//		return ResponseEntity.ok(response);
+//	}
 	
 	
 }
