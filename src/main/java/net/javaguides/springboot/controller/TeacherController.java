@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,6 +43,24 @@ public class TeacherController {
 		return teacherList;
 		}		
 	
+	@PutMapping("/updateTeacher")
+	public Teacher updateTeacher(@RequestBody Teacher teacher,String teacherId)
+	{
+		Teacher updateTeacher = teacherService.updateTeacher(teacher,teacherId);
+		return updateTeacher;
+	}
+	
+
+    @DeleteMapping("/{teacherId}")
+    public ResponseEntity<String> deleteTeacher(@PathVariable String teacherId) {
+        try {
+            teacherService.deleteTeacher(teacherId);
+            return new ResponseEntity<>("Teacher deleted successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            // Handle exceptions, e.g., teacher not found
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+    }
 	// create employee rest api
 //	@PostMapping("/teacher")
 //	public Teacher createEmployee(@RequestBody Teacher employee) {
