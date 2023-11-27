@@ -26,7 +26,6 @@ import net.javaguides.springboot.repository.TeacherRepository;
 import net.javaguides.springboot.service.StudentService;
 import net.javaguides.springboot.repository.StudentRepository;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1/")
 public class StudentController {
