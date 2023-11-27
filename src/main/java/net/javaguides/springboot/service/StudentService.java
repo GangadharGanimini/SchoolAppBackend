@@ -40,7 +40,7 @@ public class StudentService {
 		
 		Gender g = new Gender();
 		g.setFemale(student.getGender().getFemale());
-		g.setMale(student.getGender().getFemale());
+		g.setMale(student.getGender().getMale());
 		g.setOther(student.getGender().getOther());
 		s.setGender(g);
 		
